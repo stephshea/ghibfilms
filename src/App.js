@@ -12,7 +12,7 @@ class App extends Component {
     
       console.log(res);
         this.setState({ 
-          films: res.data 
+          films: res.data.slice(0,5) 
         });
       })
     }
@@ -22,9 +22,10 @@ class App extends Component {
       films.map(film => {
         return (
           <React.Fragment>
-          <div className="container" key={film.id}>
+          <div className="film card" key={film.id}>
             <div className="card-content">
-              <span className="card-title"><strong>{film.title}</strong>, director: {film.director}, producer: {film.producer}</span>
+              <span className="card-title blue-text text-darken-1">{film.title}</span>
+              <span className="blue-text text-darken-2">Director: {film.director}, Producer: {film.producer}</span>
               <p>{film.description}</p>
             </div>
           </div>
@@ -45,6 +46,4 @@ class App extends Component {
     )
   }
 }
-
-
 export default App;
