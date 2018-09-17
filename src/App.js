@@ -1,21 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import FilmList from './Components/FilmList'
+import axios from 'axios'
 
 class App extends Component {
+  state = {
+    films: []
+  }
+  componentDidMount() {
+    axios.get('https://ghibliapi.herokuapp.com/films/')
+    .then(res => {
+    
+      console.log(res);
+        this.setState({ 
+          films: res.data 
+        });
+      })
+    }
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+    const { films } = this.state;
+    const filmList = films.length ? ( 
+      films.map(film => {
+        return (
+          <React.Fragment>
+          <div className="container" key={film.id}>
+            <div className="card-content">
+              <span className="card-title"><strong>{film.title}</strong>, director: {film.director}, producer: {film.producer}</span>
+              <p>{film.description}</p>
+            </div>
+          </div>
+          </React.Fragment>
+        )
+      })
+    ) : (
+      <div className = "center">No films
       </div>
-    );
+    )
+    return (
+      <div className="container">
+        <h4 className="center">
+          Films
+        </h4>
+        {filmList}
+      </div>
+    )
   }
 }
+
 
 export default App;
