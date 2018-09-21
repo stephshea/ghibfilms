@@ -14,6 +14,7 @@ const Navbar = (props) => {
         <li><NavLink to="/About">About</NavLink></li>
         <li><NavLink to="/FilmList">FilmList</NavLink></li>
         <li><NavLink to="/Weather">Weather</NavLink></li>
+        <li><NavLink to="/News">News</NavLink></li>
       </ul>
      </div>
    </nav>  
