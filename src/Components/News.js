@@ -9,7 +9,7 @@ class News extends Component {
   componenetDidMount() {
     axios.get ("https://newsapi.org/v2/top-headlines?sources=axios&apiKey=008b9c70e28946ad940974fc70ca425b")
     .then(res => {
-      console.log(res.data);
+      console.log(res);
     })
   }
 
